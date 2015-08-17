@@ -1,0 +1,32 @@
+[alias]
+	st = status
+	lsd = "log --graph --decorate --pretty=oneline --abbrev-commit --all"
+	br = branch
+	co = checkout
+  pc = "!git push origin \"$(git rev-parse --abbrev-ref HEAD)\""
+  pr = pull --rebase
+  ff = merge --ff-only
+[user]
+	email = knapo@knapo.net
+	name = Krzysztof Knapik
+[push]
+	default = current
+[color]
+	ui = true
+	branch = true
+	interactive = true
+	status = true
+[core]
+	editor = pico
+[filter "media"]
+	required = true
+	clean = git media clean %f
+	smudge = git media smudge %f
+[filter "hawser"]
+	clean = git hawser clean %f
+	smudge = git hawser smudge %f
+	required = true
+[filter "lfs"]
+	clean = git lfs clean %f
+	smudge = git lfs smudge %f
+	required = true
