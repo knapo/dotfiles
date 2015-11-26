@@ -4,7 +4,7 @@
 ln -Fs /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/subl
 cp ./sublime/Preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/
 cp ./sublime/Default\ \(OSX\).sublime-keymap ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/
-cp ./sublime/knapo.zsh-theme ~/.oh-my-zsh/themes/
+cp ./oh-my-zsh/knapo.zsh-theme ~/.oh-my-zsh/themes/
 
 # Lightroom
 cp -r ./Lightroom/* ~/Library/Application\ Support/Adobe/Lightroom/
