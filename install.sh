@@ -13,6 +13,8 @@ cp zshrc ~/.zshrc
 cp gitconfig ~/.gitconfig
 cp gemrc ~/.gemrc
 
+cp ./bin/* /usr/local/bin
+
 sudo dseditgroup -o edit -a knapo -t user rvm
 
 echo "Done!"
