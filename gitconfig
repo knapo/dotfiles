@@ -6,6 +6,7 @@
   pc = "!git push origin \"$(git rev-parse --abbrev-ref HEAD)\""
   pr = pull --rebase
   ff = merge --ff-only
+  cb = checkout -b
 [user]
 	email = knapo@knapo.net
 	name = Krzysztof Knapik
