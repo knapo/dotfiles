@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+#
+# Auhor; Krzysztof Knapik
+#
+# http://knapo.net
+#
+# License: MIT
+#
+
+require "colorize"
+require "date"
+
+beginning_of_period = Date.today - (ARGV[0] || 7).to_i
+
+author = `git config user.email`.strip
+
+# Display only date and commit message
+cmd = %(git log --author="#{author}" --branches --remotes --no-merges --reverse --pretty=format:"%ad;%s" --since="#{beginning_of_period.to_s}")
+
+# Puts results into array
+commits = `#{cmd}`.split("\n").map{ |res| [Date.parse(res.split(';')[0]).to_s, res.split(';')[1]] }
+
+# Select commit dates
+dates = commits.map{ |r| r[0] }.uniq.sort.reverse
+
+dates.each do |date|
+  puts "----------------- #{date} ----------------------".cyan
+  commits.select{ |r| r[0] == date }.map{ |r| r[1] }.uniq.each do |result|
+    puts result.yellow
+  end
+  puts ""
+end
+
