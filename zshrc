@@ -90,4 +90,6 @@ export LANG="en_GB.UTF-8"
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export PATH="/usr/local/bin:$PATH" # Keep it as the last one
 
+unsetopt NOMATCH
+
 source ~/.envrc
