@@ -87,12 +87,13 @@ source $ZSH/oh-my-zsh.sh
 export LC_CTYPE="UTF-8"
 export LANG="en_GB.UTF-8"
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-export PATH="/usr/local/bin:$PATH" # Keep it as the last one
-
 unsetopt NOMATCH
 
 export rvmsudo_secure_path=1
 source /etc/profile.d/rvm.sh
 
 source ~/.envrc
+
+export PATH="/usr/local/bin:$PATH" # Keep it as the last one
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/opt/mongodb@3.2/bin:$PATH"
