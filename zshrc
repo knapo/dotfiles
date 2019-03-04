@@ -90,10 +90,8 @@ export LANG="en_GB.UTF-8"
 unsetopt NOMATCH
 
 export rvmsudo_secure_path=1
-source /etc/profile.d/rvm.sh
 
 source ~/.envrc
 
-export PATH="/usr/local/bin:$PATH" # Keep it as the last one
+export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/opt/mongodb@3.2/bin:$PATH"
