@@ -1,4 +1,4 @@
 #!/bin/sh
 
 msg=$(git log -1 --pretty=%B)
-git add -A && git commit -m "$msg" && git push --force
+git add -A && git commit --amend --date="$(date)" -m "$msg" && git push --force

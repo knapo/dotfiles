@@ -89,9 +89,16 @@ export LANG="en_GB.UTF-8"
 
 unsetopt NOMATCH
 
+source ~/.envrc
+
+# rvm
 export rvmsudo_secure_path=1
 
-source ~/.envrc
+# kubectl
+if [ $commands[kubectl] ]; then
+  source <(kubectl completion zsh)
+  plugins=(kubectl)
+fi
 
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
