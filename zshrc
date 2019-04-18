@@ -102,3 +102,5 @@ fi
 
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
+
+alias docker-prune="docker system prune --all --force --volumes"
