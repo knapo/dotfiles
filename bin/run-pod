@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+namespace = ARGV[0]
+pod_command = ARGV[1] || '/bin/sh'
+
+fail "namespace not given" unless namespace
+
+pods = `kubectl get pods -n #{namespace} -o name`.split("\n")
+pod_names = pods.map { |i| i.split('/')[-1] }
+
+puts "Available pods:"
+pod_names.each do |pod_name|
+  puts pod_name
+end
+
+command = "kubectl exec -n #{namespace} -it #{pod_names[0]} -- #{pod_command}"
+puts command
+system(command)
