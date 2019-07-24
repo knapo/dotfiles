@@ -1,9 +1,9 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/knapo/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
+# Look in $HOME/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it"ll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="knapo"
 
@@ -63,16 +63,16 @@ source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
+#   export EDITOR="vim"
 # else
-#   export EDITOR='mvim'
+#   export EDITOR="mvim"
 # fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+# export SSH_KEY_PATH="$HOME/.ssh/dsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -80,8 +80,8 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+# alias zshconfig="mate $HOME/.zshrc"
+# alias ohmyzsh="mate $HOME/.oh-my-zsh"
 
 # Custom
 export LC_CTYPE="UTF-8"
@@ -89,7 +89,9 @@ export LANG="en_GB.UTF-8"
 
 unsetopt NOMATCH
 
-source ~/.envrc
+source $HOME/.envrc
+
+alias docker-prune="docker system prune --all --force --volumes"
 
 # rvm
 export rvmsudo_secure_path=1
@@ -102,5 +104,13 @@ fi
 
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
 
-alias docker-prune="docker system prune --all --force --volumes"
+# The next line updates PATH for istioctl.
+if [ -d "$HOME/istio/bin" ]; then export PATH=$HOME/istio/bin:$PATH; fi
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
