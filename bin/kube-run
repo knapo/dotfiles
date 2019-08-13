@@ -1,0 +1,44 @@
+#!/usr/bin/env ruby
+
+# Allows to run command in first running container from given namespace.
+# By default it just runs shell.
+# e.g.
+# kube-run my-service
+# kube-run my-service 'rails c'
+# kube-run my-service 'rake do_something'
+
+require 'json'
+namespace = ARGV[0]
+command_to_exec = ARGV[1] || '/bin/sh'
+
+fail "namespace not given" unless namespace
+
+cluster = `kubectl config current-context`.strip.split('_', 4)[-1]
+
+fail "Not authenticated, use 'gcloud container clusters get-credentials <cluster-name> --zone=<zone>'" if cluster.empty?
+
+puts "Authenticated to #{cluster}"
+
+# Get pods from given namespace
+output = `kubectl get pods -n #{namespace} -o json`.strip
+json = JSON.parse(output)
+
+# Select actual containers without istio sidecars
+containers = json["items"].map do |i|
+  OpenStruct.new(
+    name: i["metadata"]["name"],
+    status: i["status"]["containerStatuses"].reject{ |c| c["name"] == "istio-proxy" }[0]["state"].keys[0])
+end
+
+puts "Available containers:"
+containers.each do |container|
+  puts "#{container.name} #{container.status}"
+end
+
+runnning_container = containers.detect { |container| container.status == "running" }
+
+fail "No running container" unless runnning_container
+
+command = "kubectl exec -n #{namespace} -it #{runnning_container.name} -- #{command_to_exec}"
+puts command
+system(command)
