@@ -1,11 +1,16 @@
 #!/usr/bin/env ruby
-
-# Allows to run command in first running container from given namespace.
-# By default it just runs shell.
+#
+# Auhor: Krzysztof Knapik
+#
+# License: MIT
+#
+# Allows to run command in first running container in given namespace.
+# It requires to have kubectl context set.
+# By default it just runs /bin/sh.
 # e.g.
-# kube-run my-service
-# kube-run my-service 'rails c'
-# kube-run my-service 'rake do_something'
+# kube-run my-namespace
+# kube-run my-namespace 'rails c'
+# kube-run my-namespace 'rake do_something'
 
 require 'json'
 namespace = ARGV[0]
@@ -15,7 +20,7 @@ fail "namespace not given" unless namespace
 
 cluster = `kubectl config current-context`.strip.split('_', 4)[-1]
 
-fail "Not authenticated, use 'gcloud container clusters get-credentials <cluster-name> --zone=<zone>'" if cluster.empty?
+fail "kubectl context not set, for GKE use 'gcloud container clusters get-credentials <cluster-name> --zone=<zone>'" if cluster.empty?
 
 puts "Authenticated to #{cluster}"
 
