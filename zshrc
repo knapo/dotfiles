@@ -93,6 +93,8 @@ source $HOME/.envrc
 
 alias docker-prune="docker system prune --all --force --volumes"
 
+alias bi="gem install bundler && bundle install"
+
 # rvm
 export rvmsudo_secure_path=1
 

@@ -7,6 +7,7 @@
   pr = pull --rebase
   ff = merge --ff-only
   cb = checkout -b
+  cm = checkout main
   wip = commit -am 'WIP'
 [user]
 	email = knapo@knapo.net
