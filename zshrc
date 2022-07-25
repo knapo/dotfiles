@@ -92,8 +92,8 @@ unsetopt NOMATCH
 source $HOME/.envrc
 
 alias docker-prune="docker system prune --all --force --volumes"
-
 alias bi="gem install bundler && bundle install"
+alias bu="gem install bundler && bundle update"
 
 # rvm
 export rvmsudo_secure_path=1
@@ -111,8 +111,15 @@ export PATH="/usr/local/sbin:$PATH"
 # The next line updates PATH for istioctl.
 if [ -d "$HOME/istio/bin" ]; then export PATH=$HOME/istio/bin:$PATH; fi
 
+# golang
+export GOPATH=$HOME/go
+
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
 
 # The next line enables shell command completion for gcloud.
 if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
+export PATH="/usr/local/opt/node@16/bin:$PATH"
+
+export IRB_USE_AUTOCOMPLETE=true
+export IRB_USE_MULITLINE=true
